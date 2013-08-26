@@ -19,7 +19,7 @@ import qualified Data.Map as M
 
 
 myTerminal		= "/usr/bin/gnome-terminal"
-myModMask		= mod4Mask
+myModMask		= mod1Mask
 myWorkspaces	= ["1:main","2:web","3:code","4:vm","5:im"] -- ++ map show [6..9]
 
 myBorderWidth			= 2
@@ -34,10 +34,10 @@ xmobarCurrentWorkspaceColor	= "red"
 -- Keybindings
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	[ ((modMask .|. shiftMask,	xK_c),		kill)
-	, ((modMask					xK_space),	sendMessage NextLayout)
+	, ((modMask,				xK_space),	sendMessage NextLayout)
 	, ((modMask .|. shiftMask,	xK_space),	setLayout $ XMonad.layoutHook conf)
 	, ((modMask,				xK_n),		refresh)
-	, ((mod1Mask,				xK_Tab),	windows W.focusDown)
+	, ((modMask,				xK_Tab),	windows W.focusDown)
 	, ((modMask,				xK_j),		windows W.focusDown)
 	, ((modMask,				xK_k),		windows W.focusUp)
 	, ((modMask,				xK_m),		windows W.focusMaster)
@@ -77,7 +77,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	-- Application starters
 	[ ((modMask .|. shiftMask,	xK_Return),	spawn $ XMonad.terminal conf)
 	, ((modMask, xK_w), spawn "chromium-browser")
-	, ((modMask, xK_e), spawn "evolution")
+	, ((modMask, xK_e), spawn "thunderbird")
 	, ((modMask, xK_v), spawn "gvim")
 	, ((modMask, xK_p), spawn "dmenu_path | yeganesh -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC'")
 	]
@@ -111,7 +111,7 @@ myManageHook = composeAll
 
 
 -- Custom layouts
-myLayout = onWorkspace "5:im" imLayout $ standartLayouts
+{-myLayout = onWorkspace "5:im" imLayout $ standartLayouts
   where
 	standartLayouts = tall ||| wide ||| full ||| circle
 	tall	= named "tall"		$ avoidStruts basic
@@ -121,7 +121,7 @@ myLayout = onWorkspace "5:im" imLayout $ standartLayouts
 	imLayout = named "im" $ avoidStruts $	withIM (1%9) empathyRoster $ reflectHoriz $
 						withIM (1%8) skypeRoster standartLayouts
 	empathyRoster	= className "Empathy"	`And` Role "contact_list"
-	skypeRoster		= className "Skype"		`And` Role "MainWindow"
+	skypeRoster		= className "Skype"		`And` Role "MainWindow"-}
 
 
 myStartupHook = return ()
@@ -144,17 +144,17 @@ main = do
 -- Defaults
 defaults = defaultConfig {
 	terminal			= myTerminal,
-	focusFollowMouse	= myFocusFollowMouse,
+	--focusFollowMouse	= myFocusFollowMouse,
 	borderWidth			= myBorderWidth,
 	modMask				= myModMask,
 	workspaces			= myWorkspaces,
 	normalBorderColor	= myNormalBorderColor,
-	focusBorderColor	= myFocusedBorderColor,
+	focusedBorderColor	= myFocusedBorderColor,
 
 	keys				= myKeys,
 	mouseBindings		= myMouseBindings,
 
-	layoutHook			= smartBorders $ myLayout,
+	--layoutHook			= smartBorders $ myLayout,
 	manageHook			= myManageHook,
 	startupHook			= myStartupHook
 }
