@@ -81,6 +81,7 @@ if has("autocmd")
 		au FileType sh setl et ts=2 sw=2 sts=2
 		au FileType xml setl et ts=2 sw=2 sts=2
 		au FileType python setl et
+		au FileType haskell setl et ts=8 sw=4 sts=4 sta sr nojs
 	augroup END
 
 	" Highlight unwanted whitespaces
