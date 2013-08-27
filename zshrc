@@ -57,7 +57,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 # local zshrc:
-[ -f "~/.zshrc.${HOSTNAME}" ] && source "~/.zshrc.${HOSTNAME}"
+[ -f ~/.zshrc.${HOST} ] && source ~/.zshrc.${HOST}
 
 
 # MOTD
