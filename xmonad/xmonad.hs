@@ -26,7 +26,7 @@ myWorkspaces    = ["1:main","2:web","3:mail","4:im","5:vm"]
 myBorderWidth        = 2
 myNormalBorderColor  = "black"
 myFocusedBorderColor = "red"
-myFocusFollowMouse   = True
+myFocusFollowsMouse   = True
 
 xmobarTitleColor            = "green"
 xmobarCurrentWorkspaceColor = "red"
@@ -130,8 +130,7 @@ myLayoutHook = return ()
 
 
 myStartupHook = do
-    spawn "stalonetray -i 12 --window-type normal --geometry=12x1+1800 \
-        --window-strut none --background black --icon-gravity NE"
+    spawn "stalonetray -i 12 --window-type normal --geometry=12x1+1800 --window-strut none --background black --icon-gravity NE"
     spawn "thunderbird"
 
 
@@ -152,7 +151,7 @@ main = do
 -- Defaults
 defaults = defaultConfig {
     terminal            = myTerminal,
-    focusFollowMouse    = myFocusFollowMouse,
+    focusFollowsMouse    = myFocusFollowsMouse,
     borderWidth         = myBorderWidth,
     modMask             = myModMask,
     workspaces          = myWorkspaces,
@@ -162,7 +161,7 @@ defaults = defaultConfig {
     keys                = myKeys,
     mouseBindings       = myMouseBindings,
 
-    layoutHook          = smartBorders $ myLayout,
+    layoutHook          = smartBorders $ myLayoutHook,
     manageHook          = myManageHook,
     startupHook         = myStartupHook
 }
