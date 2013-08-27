@@ -35,6 +35,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'The-NERD-tree'
 Bundle 'Conque-Shell'
 Bundle 'jamessan/vim-gnupg'
+Bundle 'scrooloose/syntastic'
 
 " SCM
 Bundle 'tpope/vim-git'
@@ -46,9 +47,6 @@ Bundle 'gmarik/github-search.vim'
 Bundle 'vim-scripts/c.vim'
 Bundle 'derekwyatt/vim-protodef'
 Bundle 'majutsushi/tagbar'
-
-" Pythonistas toolset
-Bundle 'nvie/vim-flake8'
 
 " Web development
 Bundle 'tpope/vim-rails'
@@ -81,6 +79,7 @@ if has("autocmd")
 	augroup syntax
 		au FileType ruby setl et ts=2 sw=2 sts=2 | silent color vividchalk
 		au FileType sh setl et ts=2 sw=2 sts=2
+		au FileType xml setl et ts=2 sw=2 sts=2
 		au FileType python setl et
 	augroup END
 
@@ -187,6 +186,10 @@ let g:airline_right_sep = ''
 let g:airline_branch_prefix = ''
 let g:airline_theme='wombat'
 let g:airline_powerline_fonts=1
+
+" Syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
 
 
 " Keybindings
