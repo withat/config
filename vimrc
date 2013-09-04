@@ -82,7 +82,11 @@ if has("autocmd")
 		au FileType xml setl et ts=2 sw=2 sts=2
 		au FileType python setl et
 		au FileType haskell setl et ts=8 sw=4 sts=4 sta sr nojs
+		au FileType java setl makeprg=mvn\ package
 	augroup END
+
+	" search project root
+	"au BufRead * SetProject()
 
 	" Highlight unwanted whitespaces
 	"highlight ExtraWhitespace ctermbg=red guibg=red
@@ -160,7 +164,7 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 set undolevels=1001
 
 " cd magic
-set autochdir
+"set autochdir " this breaks project path settings
 
 " Proper shell
 if executable('/bin/zsh')
@@ -186,7 +190,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_branch_prefix = ''
 let g:airline_theme='wombat'
-let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
 
 " Syntastic
 let g:syntastic_enable_signs=1
@@ -225,10 +229,8 @@ map <c-r> <c-o>:e!<cr>
 " Tab controls
 map <c-t> :tabnew<cr>
 map <c-x> :tabclose<cr>
-nnoremap <silent> <right> :tabnext<cr>
-nnoremap <silent> <left> :tabprev<cr>
-nnoremap <silent> <c-right> :execute 'tabmove' tabpagenr()<cr>
-nnoremap <silent> <c-left> :execute 'tabmove' tabpagenr() - 2<cr>a
+nnoremap <silent> <right> :bnext<cr>
+nnoremap <silent> <left> :bprev<cr>
 
 " CTRL-Y to switch to alternative buffer
 map <c-y> :b#<cr>
@@ -291,3 +293,7 @@ function! ToggleNerdTree()
 	NERDTree
 endfunction
 
+"function! SetProject()
+"	let markers = [".cvs",".svn", ".git", ".hg", "Makefile", "pom.xml",
+"	"Scons.py"]
+"endfunction
