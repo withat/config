@@ -82,7 +82,7 @@ if has("autocmd")
 		au FileType xml setl et ts=2 sw=2 sts=2
 		au FileType python setl et
 		au FileType haskell setl et ts=8 sw=4 sts=4 sta sr nojs
-		au FileType java setl makeprg=mvn\ package
+		au FileType java setl et ts=4 sw=4 sts=4 makeprg=mvn\ package
 	augroup END
 
 	" search project root
@@ -191,6 +191,7 @@ let g:airline_right_sep = ''
 let g:airline_branch_prefix = ''
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#fnamemod=':p:.:gs?[^/]*/??'
 
 " Syntastic
 let g:syntastic_enable_signs=1
@@ -204,10 +205,10 @@ let g:syntastic_auto_loc_list=1
 nnoremap <leader>a :Ack
 
 " Show bufExplorer
-map <f9> <c-o>:BufExplorer<cr>
+map <f8> <c-o>:BufExplorer<cr>
 
 " Toggle NERDTree
-map <f10> :execute 'NERDTreeToggle '.getcwd()<cr>
+map <f9> :execute 'NERDTreeToggle '.getcwd()<cr>
 
 " Toggle visual hints
 nmap <silent> <leader>hl :se invhlsearch<cr>
