@@ -1,4 +1,3 @@
-
 import System.IO
 import System.Exit
 import XMonad
@@ -115,7 +114,6 @@ myManageHook = composeAll
 
 
 -- Custom layouts
-myLayoutHook = return ()
 {-myLayout = onWorkspace "5:im" imLayout $ standartLayouts
   where
 	standartLayouts = tall ||| wide ||| full ||| circle
@@ -161,7 +159,7 @@ defaults = defaultConfig {
     keys                = myKeys,
     mouseBindings       = myMouseBindings,
 
-    layoutHook          = smartBorders $ myLayoutHook,
+    --layoutHook          = smartBorders $ myLayoutHook,
     manageHook          = myManageHook,
     startupHook         = myStartupHook
 }

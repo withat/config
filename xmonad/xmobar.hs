@@ -1,9 +1,11 @@
 Config {
-    font = "xft:Fixed-10",
+    font = "xft:Fixed-14",
     bgColor = "#000000",
     fgColor = "#ffffff",
-    position = Static { xpos = 0, ypos = 30, width = 1800, height = 18 },
-    lowerOnStart = True,
+    position = Static { xpos = 0, ypos = 0, width = 1800, height = 18 },
+    --position = Top,
+    lowerOnStart = False,
+	hideOnStart = False,
     commands = [
         Run Weather "EDDM" ["-t","<station>: <tempC>C","-L","64","-H","77","-n","#CEFFAC","-h","#FFB6B0","-l","#96CBFE"] 36000,
         Run MultiCpu ["-t","Cpu: <total0> <total1> <total2> <total3>","-L","30","-H","60","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC","-w","3"] 10,
