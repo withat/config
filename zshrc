@@ -48,6 +48,7 @@ alias -g S='&> /dev/null'
 
 PATH="${PATH}:${HOME}/.rvm/bin"
 PATH="${PATH}:${HOME}/.bin"
+PATH="${PATH}:${HOME}/.cabal/bin"
 
 
 # Ripped from Ubuntu .bashrc
