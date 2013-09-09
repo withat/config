@@ -1,9 +1,10 @@
 # OH MY ZSHELL!
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh-custom
-ZSH_THEME="couchbang"
+#ZSH_THEME="couchbang"
+ZSH_THEME="agnoster"
 DISABLE_AUTO_UPDATE="true"
-plugins=(svn git mercurial vundle ruby cake rails3 gem bundler github)
+plugins=(svn git mercurial vundle github debian command-not-found mvn pip nyan)
 source $ZSH/oh-my-zsh.sh
 
 

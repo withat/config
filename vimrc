@@ -41,6 +41,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'gmarik/github-search.vim'
 
 " C/C++ stuff
@@ -138,7 +139,7 @@ set title			" change window title
 set number			" line numbers
 set cursorline		" highlight line where cursor is
 set colorcolumn=80	" column marker
-set showmode		" display edit mode
+set noshowmode		" hide mode
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:␣ ",eol:¬
 set showbreak=↪
@@ -186,13 +187,21 @@ let g:bufExplorerShowRelativePath=1
 let g:NERDTreeWinPos="right"
 
 " Airline
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_branch_prefix = ''
-let g:airline_theme='wombat'
+let g:airline_branch_prefix=''
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':p:.:gs?[^/]*/??'
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ }		" short modes
 
 " Syntastic
 let g:syntastic_enable_signs=1
