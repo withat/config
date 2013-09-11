@@ -36,7 +36,7 @@ prompt_segment() {
 #prompt_segment() {
 #  local bg fg
 #  if [[ -n $1 ]]; then
-#    [[ $1 ~= ^[[:digit:]]+$ ]] && bg="$BG[$1]" || bg =
+#    [[ $1 ~= ^[[:digit:]]+$ ]] && bg="$BG[$1]" || bg="
 #  else
 #    bg="%k"
 #  fi
