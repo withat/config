@@ -2,7 +2,9 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh-custom
 #ZSH_THEME="wombat"
-ZSH_THEME="agnoster"
+ZSH_THEME="power-wombat"
+#ZSH_THEME="agnoster"
+#ZSH_THEME="adben"
 DISABLE_AUTO_UPDATE="true"
 plugins=(svn git mercurial vundle github debian command-not-found mvn pip nyan)
 source $ZSH/oh-my-zsh.sh
@@ -64,4 +66,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # MOTD
 ~/.bin/motd-nyan
+
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
+
+# Default user/host name
+DEFAULT_USER='michael'
+DEFAULT_HOST='Y500'
+
 
