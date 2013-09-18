@@ -1,5 +1,0 @@
-# vim:ft=sh ts=2 sw=2 sts=2
-
-for f in 101 111 113 173 186 192 229 246 ; do
-  echo -e "$FG[$f] TEST $f"
-done
