@@ -78,12 +78,11 @@ endif
 if has("autocmd")
 	" Language specific indentation
 	augroup syntax
-		au FileType ruby setl et ts=2 sw=2 sts=2 | silent color vividchalk
-		au FileType sh setl et ts=2 sw=2 sts=2
-		au FileType xml setl et ts=2 sw=2 sts=2
-		au FileType python setl et
-		au FileType haskell setl et ts=8 sw=4 sts=4 sta sr nojs
-		au FileType java setl et ts=4 sw=4 sts=4 makeprg=mvn\ package
+		au FileType ruby setl ts=2 sw=2 sts=2 | silent color vividchalk
+		au FileType sh setl ts=2 sw=2 sts=2
+		au FileType xml setl ts=4 sw=4 sts=4
+		au FileType haskell setl ts=8 sw=4 sts=4 sta sr nojs
+		au FileType java setl ts=4 sw=4 sts=4 makeprg=mvn\ package
 	augroup END
 
 	" search project root
@@ -122,7 +121,7 @@ if has("autocmd")
 	endif
 
 	" Remove trailing whitespaces on save
-	au BufWritePre * :%s/\s\+$//e
+	"au BufWritePre * :%s/\s\+$//e
 endif
 
 
@@ -151,6 +150,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set foldlevelstart=0
+set expandtab
 
 " Search settings
 set ignorecase

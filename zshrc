@@ -1,10 +1,7 @@
 # OH MY ZSHELL!
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh-custom
-#ZSH_THEME="wombat"
 ZSH_THEME="power-wombat"
-#ZSH_THEME="agnoster"
-#ZSH_THEME="adben"
 DISABLE_AUTO_UPDATE="true"
 plugins=(svn git mercurial vundle github debian command-not-found mvn pip nyan)
 source $ZSH/oh-my-zsh.sh
@@ -30,7 +27,10 @@ alias egrep='egrep --color=auto'
 alias -r ..='cd ..'
 alias -r ...='cd ../..'
 alias -r ....='cd ../../..'
-alias -r less='/usr/share/vim/vim73/macros/less.sh'
+alias -r cdr='cd $PROJECT_ROOT'
+alias -r p='pushd'
+alias -r o='popd'
+alias -r pdr='pushd $PROJECT_ROOT'
 
 # Global aliases (parameter only)
 alias -g ...='../..'
@@ -49,10 +49,6 @@ alias -g S='&> /dev/null'
 # Frequently used SSH session shortcuts
 [ -f ~/.hosts ] && source ~/.hosts
 
-PATH="${PATH}:${HOME}/.rvm/bin"
-PATH="${PATH}:${HOME}/.bin"
-PATH="${PATH}:${HOME}/.cabal/bin"
-
 
 # Ripped from Ubuntu .bashrc
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -60,18 +56,55 @@ PATH="${PATH}:${HOME}/.cabal/bin"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-# local zshrc:
-[ -f ~/.zshrc.${HOST} ] && source ~/.zshrc.${HOST}
-
-
 # MOTD
 ~/.bin/motd-nyan
 
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin
 
-# Default user/host name
-DEFAULT_USER='michael'
-DEFAULT_HOST='Y500'
+# Local bin
+export PATH=$PATH:$HOME/.bin
+# RVM path
+export PATH=$PATH:$HOME/.rvm/bin
+# Cabal path
+export PATH=$PATH:$HOME/.cabal/bin
 
+# Java home
+export JAVA_HOME='/usr/lib/jvm/default-java'
+# Jetty home
+export JETTY_HOME='/usr/share/jetty8'
+
+# Eclipse home
+export ECLIPSE_HOME='/home/michael/.eclipse/org.eclipse.platform_3.8_155965261'
+# Run eclimd (only once)
+[ -z "$(ps aux|grep eclimd|grep -v grep)" ] && screen -dmS eclimd $ECLIPSE_HOME/eclimd
+
+
+reverseFind() {
+    RES="$PWD"
+    while [ "$RES" != "/" ] ; do
+        ls -a "$RES" | grep "^$1$" >/dev/null && echo "$RES" && break
+        RES=$(dirname $RES)
+    done
+    unset RES
+}
+
+export PROJECT_ROOT="$HOME/src"
+findRepo() {
+    [[ "$PROJECT_ROOT" == "$PWD" ]] && return
+    [[ "$PROJECT_ROOT" != "$HOME/src" ]] && [[ "$PWD" == "$PROJECT_ROOT*" ]]
+    export PROJECT_ROOT="$HOME/src"
+    #for FOLDER in .svn .git ; do
+    #    DIR=$(reverseFind $FOLDER)
+    #    [ -n "$DIR" ] && export PROJECT_ROOT=$DIR && break
+    #done
+    DIR=$(reverseFind '.svn')
+    [ -n "$DIR" ] && export PROJECT_ROOT=$DIR
+    unset DIR
+}
+findRepo
+
+chpwd_functions+=(findRepo)
+
+
+# local zshrc:
+[ -f ~/.zshrc.${HOST} ] && source ~/.zshrc.${HOST}
 

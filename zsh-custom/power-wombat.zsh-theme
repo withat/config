@@ -141,7 +141,17 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment $BLUE $GRAY '%3~'
+  DIR=$(pwd | sed -e "s,^$HOME,~,")
+  while [[ $(grep -o "/" <<<"$DIR" | wc -l) -gt 2 ]] ; do
+    if [[ "$DIR" == /* ]] ; then
+      echo "DEBUG: starting with /">&2
+      [[ $(grep -o "/" <<<"$DIR" | wc -l) -eq 3 ]] && break;
+      # remove leading slash
+      DIR=${DIR#*/}
+    fi
+    DIR=${DIR#*/}
+  done
+  prompt_segment $BLUE $GRAY "$DIR"
 }
 
 # Virtualenv: current working virtualenv
