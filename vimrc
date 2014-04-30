@@ -2,65 +2,68 @@
 set nocompatible
 
 
-" Vundle Bundle
+" Vundle Plugin
 """"""""""""""""
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Let Vundle manage itself
-Bundle 'vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Vim funtionality
-"Bundle 'multvals.vim'
-"Bundle 'ScrollColors'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-surround'
-Bundle 'bling/vim-airline'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Raimondi/delimitMate'
-Bundle 'godlygeek/tabular'
-Bundle 'The-NERD-Commenter'
-Bundle 'bufexplorer.zip'
-Bundle 'SuperTab-continued.'
-Bundle 'IndexedSearch'
-Bundle 'bufexplorer.zip'
+"Plugin 'multvals.vim'
+"Plugin 'ScrollColors'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
+Plugin 'The-NERD-Commenter'
+Plugin 'bufexplorer.zip'
+Plugin 'SuperTab-continued.'
+Plugin 'IndexedSearch'
 
 " New functionality
-Bundle 'msanders/snipmate.vim'
-Bundle 'chrisbra/Recover.vim'
-Bundle 'skammer/vim-css-color'
-Bundle 'scrooloose/syntastic'
-Bundle 'The-NERD-tree'
-Bundle 'Conque-Shell'
-Bundle 'jamessan/vim-gnupg'
-Bundle 'scrooloose/syntastic'
+Plugin 'msanders/snipmate.vim'
+Plugin 'chrisbra/Recover.vim'
+Plugin 'skammer/vim-css-color'
+Plugin 'scrooloose/syntastic'
+Plugin 'The-NERD-tree'
+Plugin 'Conque-Shell'
+Plugin 'jamessan/vim-gnupg'
 
 " SCM
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'gmarik/github-search.vim'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'gmarik/github-search.vim'
 
 " C/C++ stuff
-Bundle 'vim-scripts/c.vim'
-Bundle 'derekwyatt/vim-protodef'
-Bundle 'majutsushi/tagbar'
+Plugin 'vim-scripts/c.vim'
+Plugin 'derekwyatt/vim-protodef'
+Plugin 'majutsushi/tagbar'
 
 " Web development
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
-Bundle 'edsono/vim-dbext'
-Bundle 'sukima/xmledit'
-Bundle 'matthias-guenther/hammer.vim'
-Bundle 'XML-Folding'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
+Plugin 'edsono/vim-dbext'
+Plugin 'sukima/xmledit'
+Plugin 'matthias-guenther/hammer.vim'
+Plugin 'XML-Folding'
 
 " Color schemes
-Bundle 'tpope/vim-vividchalk'
-Bundle 'wombat256.vim'
-"Bundle 'Color-Sampler-Pack'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'wombat256.vim'
+"Plugin 'Color-Sampler-Pack'
+
+call vundle#end()
+filetype plugin indent on
 
 
 " GVim options
@@ -133,7 +136,13 @@ set nohidden
 
 " Visual
 set background=dark
-color wombat256mod
+
+try
+    color wombat256mod
+catch /^Vim\%((\a\+)\)\=:E185/
+    " ignore if scheme doesn't exist
+endtry
+
 set title			" change window title
 set number			" line numbers
 set cursorline		" highlight line where cursor is
