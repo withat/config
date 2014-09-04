@@ -317,3 +317,20 @@ endfunction
 "	let markers = [".cvs",".svn", ".git", ".hg", "Makefile", "pom.xml",
 "	"Scons.py"]
 "endfunction
+
+function! CSVH(colnr)
+    " make separator changeable
+    let SEP=';'
+    if a:colnr > 1
+        let n = a:colnr - 1
+        execute 'match Keyword /^\([^'.SEP.']*'.SEP.'\)\{'.n.'}\zs[^'.SEP.']*/'
+        execute 'normal! 0'.n.'f,'
+    elseif a:colnr == 1
+        execute 'match Keyword /^[^'.SEP.']*/'
+        normal! 0
+    else
+        match
+    endif
+endfunction
+command! -nargs=1 Csv :call CSVH(<args>)
+
