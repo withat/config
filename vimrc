@@ -29,7 +29,7 @@ Plugin 'ervandew/supertab'
 Plugin 'IndexedSearch'
 
 " New functionality
-Plugin 'msanders/snipmate.vim'
+Plugin 'garbas/vim-snipmate'
 Plugin 'chrisbra/Recover.vim'
 Plugin 'skammer/vim-css-color'
 Plugin 'scrooloose/syntastic'
@@ -38,7 +38,8 @@ Plugin 'Conque-Shell'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'yegappan/mru'
-Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'taylor/vim-zoomwin'
 
 " SCM
 Plugin 'tpope/vim-git'
@@ -127,7 +128,7 @@ if has("autocmd")
 	endif
 
 	" Remove trailing whitespaces on save
-	"au BufWritePre * :%s/\s\+$//e
+    au BufWritePre * :%s/\s\+$//e
 endif
 
 

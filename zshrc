@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh-custom
 ZSH_THEME="power-wombat"
 DISABLE_AUTO_UPDATE="true"
-plugins=(svn git mercurial vundle github debian command-not-found mvn pip nyan)
+plugins=(svn git mercurial vundle github debian command-not-found mvn pip nyan bgnotify)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -47,10 +47,8 @@ alias -g S='&> /dev/null'
 #[ -z "$DISPLAY" ] || alias vim='gvim' # 2>/dev/null?
 
 
-# Ripped from Ubuntu .bashrc
+# More than less
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-# Add alert alias for long running commands: sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
 # MOTD
