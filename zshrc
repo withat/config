@@ -46,9 +46,6 @@ alias -g S='&> /dev/null'
 # When in X use GVim instead of Vim
 #[ -z "$DISPLAY" ] || alias vim='gvim' # 2>/dev/null?
 
-# Frequently used SSH session shortcuts
-[ -f ~/.hosts ] && source ~/.hosts
-
 
 # Ripped from Ubuntu .bashrc
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -57,7 +54,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 # MOTD
-~/.bin/motd-nyan
+#~/.bin/motd-nyan
 
 
 # Local bin
@@ -69,13 +66,6 @@ export PATH=$PATH:$HOME/.cabal/bin
 
 # Java home
 export JAVA_HOME='/usr/lib/jvm/default-java'
-# Jetty home
-export JETTY_HOME='/usr/share/jetty8'
-
-# Eclipse home
-export ECLIPSE_HOME='/home/michael/.eclipse/org.eclipse.platform_3.8_155965261'
-# Run eclimd (only once)
-[ -z "$(ps aux|grep eclimd|grep -v grep)" ] && screen -dmS eclimd $ECLIPSE_HOME/eclimd
 
 
 reverseFind() {

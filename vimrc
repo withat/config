@@ -25,7 +25,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
 Plugin 'The-NERD-Commenter'
 Plugin 'bufexplorer.zip'
-Plugin 'SuperTab-continued.'
+Plugin 'ervandew/supertab'
 Plugin 'IndexedSearch'
 
 " New functionality
@@ -36,6 +36,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'The-NERD-tree'
 Plugin 'Conque-Shell'
 Plugin 'jamessan/vim-gnupg'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'yegappan/mru'
+Plugin 'git://git.wincent.com/command-t.git'
 
 " SCM
 Plugin 'tpope/vim-git'
@@ -196,7 +199,8 @@ let g:bufExplorerShowRelativePath=1
 let g:NERDTreeWinPos="right"
 
 " Airline
-let g:airline_branch_prefix=''
+let g:airline_branch_prefix='⎇'
+"let g:airline_symbols.branch = '⎇'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':p:.:gs?[^/]*/??'
@@ -216,6 +220,12 @@ let g:airline_mode_map = {
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
+" EasyGrep
+let g:EasyGrepMode=2
+let g:EasyGrepCommand=0
+let g:EasyGrepRecursive=1
+let g:EasyGrepIgnoreCase=1
+
 
 " Keybindings
 """""""""""""""
@@ -230,8 +240,9 @@ map <f8> <c-o>:BufExplorer<cr>
 map <f9> :execute 'NERDTreeToggle '.getcwd()<cr>
 
 " Toggle visual hints
-nmap <silent> <leader>hl :se invhlsearch<cr>
-nmap <silent> <leader>cc :call ToggleColumn()<cr>
+nnoremap <silent> <leader>hl :se invhlsearch<cr>
+nnoremap <silent> <leader>cc :call ToggleColumn()<cr>
+nnoremap <silent> <leader>sx :call SyntaxBalloon()<cr>
 
 " Window navigation
 map <c-j> <c-w>j
@@ -301,7 +312,6 @@ function! ToggleColumn()
 	endif
 endfunction
 
-
 function! ToggleNerdTree()
 	if argc()
 		if isdirectory(argv(0))
@@ -333,4 +343,12 @@ function! CSVH(colnr)
     endif
 endfunction
 command! -nargs=1 Csv :call CSVH(<args>)
+
+function! SyntaxBalloon()
+    let synID   = synID(v:beval_lnum, v:beval_col, 0)
+    let groupID = synIDtrans(synID)
+    let name    = synIDattr(synID, "name")
+    let group   = synIDattr(groupID, "name")
+    return name . "\n" . group
+endfunction
 
